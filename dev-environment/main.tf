@@ -8,9 +8,9 @@ module "vpc" {
   instance_tenancy = var.instance_tenancy
 
   #subnet attributes
-  public_subnets_cidr = var.public_subnets_cidr
+  public_subnets_cidr  = var.public_subnets_cidr
   private_subnets_cidr = var.private_subnets_cidr
-  
+
 
 
   #rds attributes
