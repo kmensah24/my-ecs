@@ -15,12 +15,12 @@ resource "aws_ecs_cluster_capacity_providers" "ecommerce" {
   }
 }
 
-/*
+
 data "aws_ecr_image" "latest" {
  repository_name = "mike-ecommerce"
  image_tag       = "latest"
 }
-*/
+
 
 #Ecs execution role
 resource "aws_iam_role" "ecs_execution_role" {
@@ -53,7 +53,7 @@ execution_role_arn = aws_iam_role.ecs_execution_role.arn
 
   container_definitions = jsonencode([
     {
-      name      = "${data.aws_ecr_image.latest.latest}"
+      name      = "${data.aws_ecr_image.latest}"
       image     = "latest"
       cpu       = 10
       memory    = 256
@@ -86,7 +86,7 @@ network_configuration {
 
 load_balancer {
     target_group_arn = aws_alb_target_group.ecs_alb_tg.arn
-    container_name   = "${data.aws_ecr_image.latest.latest}"
+    container_name   = "${data.aws_ecr_image.latest}"
     container_port   = 80
   }
 
